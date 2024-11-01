@@ -1,5 +1,5 @@
 import ctypes
-from algorithm import AES, ELGAMAL, RSA, CESAR
+from algorithm import AES, ELGAMAL, RSA, CESAR, VIGENERE
 from compute import BASIC_COMPUTE
 
 
@@ -89,9 +89,18 @@ if __name__ == "__main__":
     # print("\n6. Recherche de la clé de déchiffrement d par brute force :")
     # my_rsa.brute_force_d()
 
+
+    # """
+    #     CESAR
+    # """
+    # my_cesar = CESAR(k=7)
+    # m = my_cesar.decrypt("QLZBP ZHSVU KYLZK HUZBU LKLZY BLZSL ZWSBZ TPZLY HISLZ KLSHC PSSLQ LTHYJ OLLUT LKLTH UKHUA JVTTL UAZLK PABYP UVPYL UHUNS HPZ")
+    # c = my_cesar.encrypt("jesui salon dresd ansun edesr uesle splus miser ables delav illej emarc heenm edema ndant comme ntsed ituri noire nangl ais")
+
+
     """
-        CESAR
+        VIGENERE
     """
-    my_cesar = CESAR(k=7)
-    m = my_cesar.decrypt("QLZBP ZHSVU KYLZK HUZBU LKLZY BLZSL ZWSBZ TPZLY HISLZ KLSHC PSSLQ LTHYJ OLLUT LKLTH UKHUA JVTTL UAZLK PABYP UVPYL UHUNS HPZ")
-    c = my_cesar.encrypt("jesui salon dresd ansun edesr uesle splus miser ables delav illej emarc heenm edema ndant comme ntsed ituri noire nangl ais")
+    my_vigenere = VIGENERE(k="Miaou")
+    c = my_vigenere.encrypt("As tu un animal de compagnie ?")
+    m = my_vigenere.decrypt("Aci ih pqpzipwcim viuby.")

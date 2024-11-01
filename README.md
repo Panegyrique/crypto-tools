@@ -22,9 +22,14 @@ my_rsa.found_d()
 my_rsa.brute_force_d()
 
 # CESAR
-my_cesar = CESAR(k=7)
+my_cesar = CESAR(k)
 c = my_cesar.encrypt(m)
 m = my_cesar.decrypt(c)
+
+# VIGENERE
+my_vigenere = VIGENERE(k)
+c = my_vigenere.encrypt(m)
+m = my_vigenere.decrypt(c)
 
 # BASIC COMPUTE
 my_basic_compute = BASIC_COMPUTE()
