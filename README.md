@@ -21,6 +21,11 @@ my_rsa.found_phi_n()
 my_rsa.found_d()
 my_rsa.brute_force_d()
 
+# CESAR
+my_cesar = CESAR(k=7)
+c = my_cesar.encrypt(m)
+m = my_cesar.decrypt(c)
+
 # BASIC COMPUTE
 my_basic_compute = BASIC_COMPUTE()
 my_basic_compute.
