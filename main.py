@@ -111,4 +111,5 @@ if __name__ == "__main__":
     """
     my_ecc = ECC(a=0, b=1, GF=5)
     my_ecc.compute_points()
-    
+    my_ecc.hasse_weil_borne()
+    my_ecc.try_generator_p((2,3))
