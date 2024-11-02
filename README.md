@@ -1,5 +1,5 @@
 ## Function
-``` python
+```py
 # AES
 my_aes = AES()
 my_aes.encrypt(plaintext, key)
