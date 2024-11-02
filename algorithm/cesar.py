@@ -23,3 +23,4 @@ class CESAR():
             m[i] = self._alphabet[((self._alphabet.index(letter) - self._k)%26)]
         print(f"Message chiffré : {c}\nMessage en clair avec pour cle {self._k} (valeur du décalage) : {"".join(m)}")
         return "".join(m)
+    

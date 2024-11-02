@@ -1,5 +1,5 @@
 import ctypes
-from algorithm import AES, ELGAMAL, RSA, CESAR, VIGENERE
+from algorithm import AES,CESAR, ECC, ELGAMAL, RSA, VIGENERE
 from compute import BASIC_COMPUTE
 
 
@@ -37,6 +37,14 @@ if __name__ == "__main__":
     
     # my_aes = AES()
     # my_aes.encrypt(plaintext, key)
+
+
+    # """
+    #     CESAR
+    # """
+    # my_cesar = CESAR(k=7)
+    # m = my_cesar.decrypt("QLZBP ZHSVU KYLZK HUZBU LKLZY BLZSL ZWSBZ TPZLY HISLZ KLSHC PSSLQ LTHYJ OLLUT LKLTH UKHUA JVTTL UAZLK PABYP UVPYL UHUNS HPZ")
+    # c = my_cesar.encrypt("jesui salon dresd ansun edesr uesle splus miser ables delav illej emarc heenm edema ndant comme ntsed ituri noire nangl ais")
 
 
     # """
@@ -91,16 +99,16 @@ if __name__ == "__main__":
 
 
     # """
-    #     CESAR
+    #     VIGENERE
     # """
-    # my_cesar = CESAR(k=7)
-    # m = my_cesar.decrypt("QLZBP ZHSVU KYLZK HUZBU LKLZY BLZSL ZWSBZ TPZLY HISLZ KLSHC PSSLQ LTHYJ OLLUT LKLTH UKHUA JVTTL UAZLK PABYP UVPYL UHUNS HPZ")
-    # c = my_cesar.encrypt("jesui salon dresd ansun edesr uesle splus miser ables delav illej emarc heenm edema ndant comme ntsed ituri noire nangl ais")
+    # my_vigenere = VIGENERE(k="Miaou")
+    # c = my_vigenere.encrypt("As tu un animal de compagnie ?")
+    # m = my_vigenere.decrypt("Aci ih pqpzipwcim viuby.")
 
 
     """
-        VIGENERE
+        ECC
     """
-    my_vigenere = VIGENERE(k="Miaou")
-    c = my_vigenere.encrypt("As tu un animal de compagnie ?")
-    m = my_vigenere.decrypt("Aci ih pqpzipwcim viuby.")
+    my_ecc = ECC(a=0, b=1, GF=5)
+    my_ecc.compute_points()
+    

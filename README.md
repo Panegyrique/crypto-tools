@@ -4,6 +4,18 @@
 my_aes = AES()
 my_aes.encrypt(plaintext, key)
 
+# CESAR
+my_cesar = CESAR(k)
+c = my_cesar.encrypt(m)
+m = my_cesar.decrypt(c)
+
+# ECC
+my_ecc = ECC(a, b, GF)
+my_ecc.compute_points()
+my_ecc.add_two_point(P, Q)
+my_ecc.doubling_point(P)
+my_ecc.hasse_weil_borne()
+
 # ELGAMAL
 my_elgamal = ELGAMAL(p, g, h, x=None)
 c1, c2 = my_elgamal.encrypt(m, k)
@@ -20,11 +32,6 @@ my_rsa.check_factor_q(q)
 my_rsa.found_phi_n()
 my_rsa.found_d()
 my_rsa.brute_force_d()
-
-# CESAR
-my_cesar = CESAR(k)
-c = my_cesar.encrypt(m)
-m = my_cesar.decrypt(c)
 
 # VIGENERE
 my_vigenere = VIGENERE(k)
