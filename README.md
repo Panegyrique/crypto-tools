@@ -12,10 +12,10 @@ m = my_cesar.decrypt(c)
 # ECC
 my_ecc = ECC(a, b, GF)
 my_ecc.compute_points()
-my_ecc.add_two_point(P=(xp,yp), Q=(xq,yq))
-my_ecc.doubling_point(P=(xp,yp))
+my_ecc.add_two_point(P=(xp, yp), Q=(xq, yq))
+my_ecc.doubling_point(P=(xp, yp))
 my_ecc.hasse_weil_borne()
-my_ecc.try_generator_p(P=(xp,yp))
+my_ecc.try_generator_p(P=(xp, yp))
 
 # ELGAMAL
 my_elgamal = ELGAMAL(p, g, h, x=None)
@@ -41,5 +41,8 @@ m = my_vigenere.decrypt(c)
 
 # BASIC COMPUTE
 my_basic_compute = BASIC_COMPUTE()
-my_basic_compute.
+r, _ = my_basic_compute.pgcd(a, b)
+r = my_basic_compute.euclide_extended(a, b)
+r = my_basic_compute.modular_exponentiation(a, b, n)
+r = my_basic_compute.square_and_multiply(a, b, n)
 ```

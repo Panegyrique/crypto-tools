@@ -48,6 +48,15 @@ if __name__ == "__main__":
 
 
     # """
+    #     ECC
+    # """
+    # my_ecc = ECC(a=0, b=1, GF=5)
+    # my_ecc.compute_points()
+    # my_ecc.hasse_weil_borne()
+    # my_ecc.try_generator_p((2,3))
+
+
+    # """
     #     ELGAMAL
     # """
     # my_elgamal = ELGAMAL(p=101, g=7, h=44)
@@ -107,9 +116,12 @@ if __name__ == "__main__":
 
 
     """
-        ECC
+        BASIC COMPUTE
     """
-    my_ecc = ECC(a=0, b=1, GF=5)
-    my_ecc.compute_points()
-    my_ecc.hasse_weil_borne()
-    my_ecc.try_generator_p((2,3))
+    compute = BASIC_COMPUTE()
+    compute.pgcd(15, 4)
+    compute.modular_exponentiation(2, 7, 55)
+    compute.square_and_multiply(2, 7, 55)
+    # compute.euclide_extended(30, 20, 30)
+    # compute.square_and_multiply(2, 10, 1000)
+    # compute.chinese_remainder([3, 5, 7], [2, 3, 2])
