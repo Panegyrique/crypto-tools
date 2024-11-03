@@ -41,40 +41,52 @@ class BASIC_COMPUTE:
         print(f"\n=> 1 = {y0} * {a} + {x0} * {n} (mod {n}) donc a = {inverse}")
         return inverse
     
-    def modular_exponentiation(self, a, b, n):
-        print(f"\nModular Exponentiation: {a} ^ {b} mod {n}")
+    def modular_exponentiation(self, a, b, n, display=True):
+        if display:
+            print(f"\nModular Exponentiation: {a} ^ {b} mod {n}")
         result = 1
         a = a % n
 
         for i in range(1, b + 1):
-            print(f"\t{i}: ({result} * {a}) % {n} = ", end='')
+            if display:
+                print(f"\t{i}: ({result} * {a}) % {n} = ", end='')
             result = (result * a) % n
-            print(result)
+            if display:
+                print(result)
 
-        print(f"\n\t=> {a} ^ {b} mod {n} = {result}")
+        if display:
+            print(f"\n\t=> {a} ^ {b} mod {n} = {result}")
         return result
 
-    def square_and_multiply(self, a, b, n):
-        print(f"\nSquare and Multiply: {a} ^ {b} mod {n}")
+    def square_and_multiply(self, a, b, n, display=True):
+        if display:
+            print(f"\nSquare and Multiply: {a} ^ {b} mod {n}")
         result = 1
         a = a % n
 
         binary_b = bin(b)[2:]
-        print(f"\tbin({b}) = {binary_b}")
+        if display:
+            print(f"\tbin({b}) = {binary_b}")
 
         for i, bit in enumerate(binary_b):
-            print(f"\t{i}: Square: ({result} * {result}) % {n} = ", end='')
+            if display:
+                print(f"\t{i}: Square: ({result} * {result}) % {n} = ", end='')
             result = (result * result) % n
-            print(result)
+            if display:
+                print(result)
             
             if bit == '1':
-                print(f"\t   Multiply: ({result} * {a}) % {n} = ", end='')
+                if display:
+                    print(f"\t   Multiply: ({result} * {a}) % {n} = ", end='')
                 result = (result * a) % n
-                print(result)
+                if display:
+                    print(result)
             else:
-                print("\t   Pas de multiplication bit = 0")
+                if display:
+                    print("\t   Pas de multiplication bit = 0")
 
-        print(f"\n\t=> {a} ^ {b} mod {n} = {result}")
+        if display:
+            print(f"\n\t=> {a} ^ {b} mod {n} = {result}")
         return result
     
     def modular_square_root(self, a, n):
@@ -106,3 +118,20 @@ class BASIC_COMPUTE:
             print(f"\t=> {a} n'est pas un nombre premier.")
             return False
     
+    def is_generator(self, group_order, g):
+        print(f"\n{g} est un générateur de l'ensemble multiplicatif modulo {group_order + 1} ?")
+        print(f"Le groupe a un ordre de {group_order}. Nous devons vérifier si les puissances de {g} couvrent tous les entiers de 1 à {group_order} modulo {group_order + 1}")
+        
+        seen = set() # Build a set of unique elements
+        for k in range(1, group_order + 1):
+            power = self.square_and_multiply(g, k, group_order + 1, display=False)
+            seen.add(power)
+            print(f"\t{k}: {g}^{k} mod {group_order + 1} = {power}")
+        
+        if len(seen) == group_order:
+            print(f"\n\t=> {g} est un générateur car toutes les valeurs de 1 à {group_order} sont atteintes.")
+            return True
+        else:
+            print(f"\n\t=> {g} n'est pas un générateur car toutes les valeurs de 1 à {group_order} ne sont pas atteintes.")
+            return False
+        
