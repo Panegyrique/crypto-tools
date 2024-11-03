@@ -42,7 +42,8 @@ m = my_vigenere.decrypt(c)
 # BASIC COMPUTE
 my_basic_compute = BASIC_COMPUTE()
 r, _ = my_basic_compute.pgcd(a, b)
-r = my_basic_compute.euclide_extended(a, b)
+r = my_basic_compute.euclide_extended(a, n)
 r = my_basic_compute.modular_exponentiation(a, b, n)
 r = my_basic_compute.square_and_multiply(a, b, n)
+r = my_basic_compute.modular_square_root(a, n)
 ```

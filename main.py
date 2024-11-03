@@ -119,9 +119,9 @@ if __name__ == "__main__":
         BASIC COMPUTE
     """
     compute = BASIC_COMPUTE()
-    compute.pgcd(15, 4)
-    compute.modular_exponentiation(2, 7, 55)
-    compute.square_and_multiply(2, 7, 55)
-    # compute.euclide_extended(30, 20, 30)
-    # compute.square_and_multiply(2, 10, 1000)
-    # compute.chinese_remainder([3, 5, 7], [2, 3, 2])
+    # r, _ = compute.pgcd(15, 4)
+    # r = compute.euclide_extended(66, 17)
+    # r = compute.modular_exponentiation(2, 7, 55)
+    # r = compute.square_and_multiply(18, 23, 55)
+    # r = compute.modular_square_root(1, 77)
+    # r = compute.primality_test(55)
