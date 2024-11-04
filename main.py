@@ -14,6 +14,7 @@ if __name__ == "__main__":
     #     0x22, 0x66, 0xaa, 0xee, 
     #     0x33, 0x77, 0xbb, 0xff
     # )
+
     # key = (ctypes.c_uint8 * 16)(
     #     0x00, 0x04, 0x08, 0x0c, 
     #     0x01, 0x05, 0x09, 0x0d, 
@@ -34,9 +35,35 @@ if __name__ == "__main__":
     #     0x15, 0xd2, 0x15, 0x4f, 
     #     0x16, 0xa6, 0x88, 0x3c
     # )
+
+    # state = (ctypes.c_uint8 * 16)(
+    #     0x42, 0x00, 0x3a, 0x8e, 
+    #     0x28, 0x6b, 0x0a, 0x6c, 
+    #     0x03, 0xaa, 0x88, 0xbc, 
+    #     0x4b, 0x27, 0x11, 0x60
+    # )
+
+    # state = (ctypes.c_uint8 * 16)(
+    #     0x2c, 0x63, 0x80, 0x19, 
+    #     0x34, 0x7f, 0x67, 0x50, 
+    #     0x7b, 0xac, 0xc4, 0x65, 
+    #     0xb3, 0xcc, 0x82, 0xd0
+    # )
     
+    # state = (ctypes.c_uint8 * 16)(
+    #     0x2c, 0x63, 0x80, 0x19, 
+    #     0x7f, 0x67, 0x50, 0x34, 
+    #     0xc4, 0x65, 0x7b, 0xac, 
+    #     0xd0, 0xb3, 0xcc, 0x82
+    # )
+
     # my_aes = AES()
     # my_aes.encrypt(plaintext, key)
+    # my_aes.add_round_key(plaintext, key)
+    # my_aes.sub_bytes(state)
+    # my_aes.shift_rows(state)
+    # my_aes.mix_columns(state)
+    # my_aes.key_gen(key)
 
 
     # """
@@ -125,7 +152,7 @@ if __name__ == "__main__":
     """
         BASIC COMPUTE
     """
-    compute = BASIC_COMPUTE()
+    # compute = BASIC_COMPUTE()
     # r, _ = compute.pgcd(15, 4)
     # r = compute.euclide_extended(66, 17)
     # r = compute.modular_exponentiation(2, 7, 55)
@@ -133,4 +160,4 @@ if __name__ == "__main__":
     # r = compute.modular_square_root(1, 77)
     # r = compute.primality_test(55)
     # r = compute.is_generator(59-1, 2)
-    p, q = compute.fermat_factorization(3917299) 
+    # p, q = compute.fermat_factorization(3917299) 

@@ -10,6 +10,11 @@ pip install unidecode
 # AES
 my_aes = AES()
 my_aes.encrypt(plaintext, key)
+my_aes.add_round_key(state, roundkey)
+my_aes.sub_bytes(state)
+my_aes.shift_rows(state)
+my_aes.mix_columns(state)
+r = my_aes.key_gen(master_key)
 
 # CESAR
 my_cesar = CESAR(k)
