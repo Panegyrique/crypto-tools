@@ -58,4 +58,5 @@ r = my_basic_compute.modular_exponentiation(a, b, n,)
 r = my_basic_compute.square_and_multiply(a, b, n,)
 r = my_basic_compute.modular_square_root(a, n)
 r = my_basic_compute.is_generator(group_order, g)
+p, q = compute.fermat_factorization(n) 
 ```
