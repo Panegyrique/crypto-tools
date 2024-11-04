@@ -161,4 +161,4 @@ if __name__ == "__main__":
     # r = compute.primality_test(55)
     # r = compute.is_generator(59-1, 2)
     # p, q = compute.fermat_factorization(3917299) 
-    r = compute.discrete_logarithm(2, 11, 59)
+    # r = compute.discrete_logarithm(2, 11, 59)
