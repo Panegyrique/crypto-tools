@@ -16,6 +16,10 @@ my_cesar = CESAR(k)
 c = my_cesar.encrypt(m)
 m = my_cesar.decrypt(c)
 
+# DIFFIE_HELLMANN
+my_diffie_hellmann = DIFFIE_HELLMANN(p, g)
+k = my_diffie_hellmann.key_exchange(a, b)
+
 # ECC
 my_ecc = ECC(a, b, GF)
 my_ecc.compute_points()
@@ -50,8 +54,8 @@ m = my_vigenere.decrypt(c)
 my_basic_compute = BASIC_COMPUTE()
 r, _ = my_basic_compute.pgcd(a, b)
 r = my_basic_compute.euclide_extended(a, n)
-r = my_basic_compute.modular_exponentiation(a, b, n, display=True)
-r = my_basic_compute.square_and_multiply(a, b, n, display=True)
+r = my_basic_compute.modular_exponentiation(a, b, n,)
+r = my_basic_compute.square_and_multiply(a, b, n,)
 r = my_basic_compute.modular_square_root(a, n)
 r = my_basic_compute.is_generator(group_order, g)
 ```

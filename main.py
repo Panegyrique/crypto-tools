@@ -1,5 +1,5 @@
 import ctypes
-from algorithm import AES,CESAR, ECC, ELGAMAL, RSA, VIGENERE
+from algorithm import AES, CESAR, DIFFIE_HELLMANN, ECC, ELGAMAL, RSA, VIGENERE
 from compute import BASIC_COMPUTE
 
 
@@ -45,6 +45,13 @@ if __name__ == "__main__":
     # my_cesar = CESAR(k=7)
     # m = my_cesar.decrypt("QLZBP ZHSVU KYLZK HUZBU LKLZY BLZSL ZWSBZ TPZLY HISLZ KLSHC PSSLQ LTHYJ OLLUT LKLTH UKHUA JVTTL UAZLK PABYP UVPYL UHUNS HPZ")
     # c = my_cesar.encrypt("jesui salon dresd ansun edesr uesle splus miser ables delav illej emarc heenm edema ndant comme ntsed ituri noire nangl ais")
+
+
+    """
+        DIFFIE_HELLMANN
+    """
+    my_diffie_hellmann = DIFFIE_HELLMANN(p=59, g=2)
+    my_diffie_hellmann.key_exchange(5, 21)
 
 
     # """
@@ -125,4 +132,4 @@ if __name__ == "__main__":
     # r = compute.square_and_multiply(18, 23, 55)
     # r = compute.modular_square_root(1, 77)
     # r = compute.primality_test(55)
-    compute.is_generator(59-1, 2)
+    # compute.is_generator(59-1, 2)
