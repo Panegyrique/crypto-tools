@@ -1,3 +1,10 @@
+## Dependencies
+```py
+pip install sympy
+pip install pathlib
+pip install unidecode
+```
+
 ## Function
 ```py
 # AES
