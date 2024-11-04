@@ -1,3 +1,5 @@
+from compute.basic_compute import BASIC_COMPUTE
+
 class RSA:
     
     def __init__(self, n, e, d=None, p=None, q=None):
@@ -8,42 +10,37 @@ class RSA:
         self._p = p
         self._q = q
         self._phi_n = None
-    
+
+        self._compute = BASIC_COMPUTE()
 
     def encrypt(self, m):
         # c = m^e mod n
-        c = pow(m, self._e, self._n)
-        print(f"Chiffrement : m = {m} ^ {self._e} mod {self._n} = {c}\nc = {c}")
+        c = self._compute.square_and_multiply(m, self._e, self._n)
         return c
-
 
     def decrypt(self, c):
         # m = c^d mod n
         if self._d is None:
             print("Erreur : L'exposant de déchiffrement d n'est pas encore défini.")
             return None
-        m = pow(c, self._d, self._n)
-        print(f"Déchiffrement : c = {c} ^ {self._d} mod {self._n} = {m}\nm = {m}")
+        m = self._compute.square_and_multiply(c, self._d, self._n)
         return m
-
 
     def check_factor_p(self, p):
         if self._n % p == 0:
             self._p = p
             self._q = self._n // p
-            print(f"{p} est un facteur de {self._n} car n % p == 0\nq = n // p = {self._q}")
+            print(f"{p} est un facteur de {self._n} car n % p == 0\nq = n / p = {self._q}")
         else:
             print(f"{p} n'est pas un facteur de {self._n}.")
-
 
     def check_factor_q(self, q):
         if self._n % q == 0:
             self._q = q
             self._p = self._n // q
-            print(f"{q} est un facteur de {self._n} car n % p == 0\np = n // q = {self._p}")
+            print(f"{q} est un facteur de {self._n} car n % p == 0\np = n / q = {self._p}")
         else:
             print(f"{q} n'est pas un facteur de {self._n}.")
-
 
     def found_phi_n(self):
         # ϕ(n) = (p - 1) * (q - 1)
@@ -52,7 +49,6 @@ class RSA:
             print(f"Calcul de ϕ(n) : (p-1) * (q-1) = ({self._p}-1) * ({self._q}-1) = {self._phi_n}\nϕ(n) = {self._phi_n}")
         else:
             print("Impossible de calculer ϕ(n) sans les facteurs p et q de n")
-
 
     def found_d(self):
         # d * e ≡ 1 (mod ϕ(n)) en utilisant l'algorithme d'Euclide étendu
@@ -80,7 +76,6 @@ class RSA:
         else:
             print("Erreur : e et ϕ(n) ne sont pas premiers entre eux.")
             self._d = None
-
 
     def brute_force_d(self):
         self._d = None
