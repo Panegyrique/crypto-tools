@@ -152,7 +152,7 @@ if __name__ == "__main__":
     """
         BASIC COMPUTE
     """
-    # compute = BASIC_COMPUTE()
+    compute = BASIC_COMPUTE()
     # r, _ = compute.pgcd(15, 4)
     # r = compute.euclide_extended(66, 17)
     # r = compute.modular_exponentiation(2, 7, 55)
@@ -161,3 +161,4 @@ if __name__ == "__main__":
     # r = compute.primality_test(55)
     # r = compute.is_generator(59-1, 2)
     # p, q = compute.fermat_factorization(3917299) 
+    r = compute.discrete_logarithm(2, 11, 59)

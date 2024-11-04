@@ -5,6 +5,11 @@ class BASIC_COMPUTE:
 
     def __init__(self):
         pass
+
+    def _is_perfect_square(self, x):
+        s = int(math.sqrt(x))
+        result = s * s == x
+        return result
     
     def pgcd(self, a, b):
         print(f"\nPGCD({a}, {b}):")
@@ -173,8 +178,37 @@ class BASIC_COMPUTE:
         print(f"\n\t=> Les facteurs de {n} sont {p} et {q} (car {p} * {q} = {n})")
         return (p, q)
 
-    def _is_perfect_square(self, x):
-        s = int(math.sqrt(x))
-        result = s * s == x
-        return result
-    
+    def discrete_logarithm(self, a, b, n):
+        print(f"\nCalcul du logarithme discret de {b} en base {a} modulo {n} :")
+        
+        m = math.isqrt(n) + 1  # Approximativement √n
+        print(f"\nÉtape 1: \n\tm = ⌊√{n}⌋ + 1 = {m}")
+
+        print('\nÉtape 2: Calculer les étapes "baby" : a^j mod n')
+        baby_steps = {}
+        for j in range(m):
+            value = self.modular_exponentiation(a, j, n, display=False)
+            baby_steps[value] = j
+            print(f"\tBaby step: a^{j} mod {n} = {value}")
+
+        print("\nÉtape 3 : Calculer a^(-m) mod n")
+        a_inv_m = self.euclide_extended(a, n)  # Calculer l'inverse de a mod n
+        a_inv_m = self.modular_exponentiation(a_inv_m, m, n)
+        print(f"\t=> a^(-m) mod {n} = {a_inv_m}")
+
+        print('\nÉtape 4 : Calculer les étapes "giant"')
+        giant_step_value = b
+        for i in range(m):
+            print(f"\t{i}: On commence avec giant_step_value = {giant_step_value}")
+            
+            if giant_step_value in baby_steps:
+                print(f"\t   Giant step : On a trouvé {giant_step_value} à l'étape {i} !")
+                print(f"\n\t=> Logarithme discret : x = {i} * {m} + {baby_steps[giant_step_value]} = {i * m + baby_steps[giant_step_value]}")
+                return i * m + baby_steps[giant_step_value]
+            
+            print(f"\t   Giant step: {giant_step_value} n'est pas trouvé dans les baby steps. On passe à l'étape suivante.")
+            giant_step_value = (giant_step_value * a_inv_m) % n
+            print(f"\t   On calcule le nouveau giant_step_value = ({giant_step_value} * {a_inv_m}) % {n} = {giant_step_value}")
+
+        print("\t=> Logarithme discret non trouvé.")
+        return None
