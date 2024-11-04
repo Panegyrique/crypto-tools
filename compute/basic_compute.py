@@ -1,4 +1,5 @@
 from sympy import isprime
+import math
 
 class BASIC_COMPUTE:
 
@@ -134,4 +135,46 @@ class BASIC_COMPUTE:
         else:
             print(f"\n\t=> {g} n'est pas un générateur car toutes les valeurs de 1 à {group_order} ne sont pas atteintes.")
             return False
+    
+    def fermat_factorization(self, n):
+        print(f"\nFactorisation de {n} par la méthode de Fermat:")
         
+        if n % 2 == 0:
+            print(f"\t{n} est pair, donc on a immédiatement une factorisation : 2 * {n // 2}")
+            return (2, n // 2)
+
+        a = math.ceil(math.sqrt(n))
+        print(f"\tOn commence avec a = ⌈√{n}⌉ = {a}")
+
+        b2 = a * a - n
+        print(f"\tInitialement, b² = {a}² - {n} = {b2}")
+
+        step = 0
+        while not self._is_perfect_square(b2):
+            print(f"\n\t{step}: b² = {b2} n'est pas un carré parfait.")
+            a += 1
+            print(f"\t   On incrémente a pour obtenir a = {a}")
+            b2 = a * a - n
+            print(f"\t   On recalcule b² : {a}² - {n} = {a * a} - {n} = {b2}")
+            step += 1
+
+        # Une fois b² trouvé comme un carré parfait
+        b = int(math.sqrt(b2))
+        print(f"\n\tTrouvé !!! b² = {b2} qui est un carré parfait, donc b = √{b2} = {b}")
+
+        # Calcul des facteurs p et q
+        p = a - b
+        q = a + b
+        print(f"\t\t   On calcule les facteurs :")
+        print(f"\t\t   p = a - b = {a} - {b} = {p}")
+        print(f"\t\t   q = a + b = {a} + {b} = {q}")
+        print(f"\t\t   Vérification : p * q = {p} * {q} = {p * q}")
+
+        print(f"\n\t=> Les facteurs de {n} sont {p} et {q} (car {p} * {q} = {n})")
+        return (p, q)
+
+    def _is_perfect_square(self, x):
+        s = int(math.sqrt(x))
+        result = s * s == x
+        return result
+    

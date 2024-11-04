@@ -47,11 +47,11 @@ if __name__ == "__main__":
     # c = my_cesar.encrypt("jesui salon dresd ansun edesr uesle splus miser ables delav illej emarc heenm edema ndant comme ntsed ituri noire nangl ais")
 
 
-    """
-        DIFFIE_HELLMANN
-    """
-    my_diffie_hellmann = DIFFIE_HELLMANN(p=59, g=2)
-    my_diffie_hellmann.key_exchange(5, 21)
+    # """
+    #     DIFFIE_HELLMANN
+    # """
+    # my_diffie_hellmann = DIFFIE_HELLMANN(p=59, g=2)
+    # my_diffie_hellmann.key_exchange(5, 21)
 
 
     # """
@@ -132,4 +132,5 @@ if __name__ == "__main__":
     # r = compute.square_and_multiply(18, 23, 55)
     # r = compute.modular_square_root(1, 77)
     # r = compute.primality_test(55)
-    # compute.is_generator(59-1, 2)
+    # r = compute.is_generator(59-1, 2)
+    p, q = compute.fermat_factorization(3917299) 
