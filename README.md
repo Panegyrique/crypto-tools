@@ -1,4 +1,4 @@
-## Dependencies
+## Dependencies
 ```py
 pip install sympy
 pip install pathlib
