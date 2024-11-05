@@ -44,9 +44,11 @@ class ECC():
 
         # Calcul de la pente (lambda)
         self._lambda = ((Q[1] - P[1]) * pow(Q[0] - P[0], -1, self._GF)) % self._GF
-        print(f"\t=> λ (lambda) = ({Q[1]} - {P[1]}) * (inverse de {Q[0]} - {P[0]}) mod {self._GF} = {self._lambda}")
+        print(f"\tλ (lambda) = ({Q[1]} - {P[1]}) * (inverse de {Q[0]} - {P[0]}) mod {self._GF} = {self._lambda}")
 
+        print(f"\txr = (λ^2 - Px - Qx) mod GF")
         x_r = (self._lambda ** 2 - P[0] - Q[0]) % self._GF
+        print(f"\tyr = (λ^2 * (Px - xr) - Py) mod GF")
         y_r = (self._lambda * (P[0] - x_r) - P[1]) % self._GF
         print(f"\t=> Point résultant : ({x_r}, {y_r})\n")
 

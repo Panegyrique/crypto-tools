@@ -52,30 +52,11 @@ class RSA:
 
     def found_d(self):
         # d * e ≡ 1 (mod ϕ(n)) en utilisant l'algorithme d'Euclide étendu
-        print("Début du calcul de d tel que d * e ≡ 1 (mod ϕ(n)) :")
+        print("Début du calcul de d (appelé a par la suite) tel que d * e ≡ 1 (mod ϕ(n)) :")
         if self._phi_n is None:
             print("Erreur : ϕ(n) n'est pas défini. Veuillez calculer ϕ(n) avant de chercher d.")
             return
-        
-        print(f"Utilisation de l'algorithme d'Euclide étendu pour résoudre d * {self._e} ≡ 1 (mod {self._phi_n})")
-        
-        def extended_gcd(a, b):
-            if b == 0:
-                print(f"PGCD trouvé : {a}")
-                return a, 1, 0
-            g, x1, y1 = extended_gcd(b, a % b)
-            x = y1
-            y = x1 - (a // b) * y1
-            print(f"Étape intermédiaire : gcd({a}, {b}) = {g}, x = {x}, y = {y}")
-            return g, x, y
-
-        gcd, x, _ = extended_gcd(self._e, self._phi_n)
-        if gcd == 1:
-            self._d = x % self._phi_n
-            print(f"Résultat de d trouvé : d = {self._d} (mod {self._phi_n})")
-        else:
-            print("Erreur : e et ϕ(n) ne sont pas premiers entre eux.")
-            self._d = None
+        gcd = self._compute.euclide_extended(self._e, self._phi_n)
 
     def brute_force_d(self):
         self._d = None
