@@ -178,11 +178,11 @@ class BASIC_COMPUTE:
         print(f"\n\t=> Les facteurs de {n} sont {p} et {q} (car {p} * {q} = {n})")
         return (p, q)
 
-    def discrete_logarithm(self, a, b, n):
+    def discrete_logarithm(self, a, b, n, card):
         print(f"\nCalcul du logarithme discret de {b} en base {a} modulo {n} :")
         
-        m = math.isqrt(n) + 1  # Approximativement √n
-        print(f"\nÉtape 1: \n\tm = ⌊√{n}⌋ + 1 = {m}")
+        m = math.ceil(math.sqrt(card)) # Approximativement √n
+        print(f"\nÉtape 1: \n\tm = ⌊√{card}⌋ = {m}")
 
         print('\nÉtape 2: Calculer les étapes "baby" : a^j mod n')
         baby_steps = {}
@@ -190,6 +190,8 @@ class BASIC_COMPUTE:
             value = self.modular_exponentiation(a, j, n, display=False)
             baby_steps[value] = j
             print(f"\tBaby step: a^{j} mod {n} = {value}")
+        
+        print("\t=>", sorted(baby_steps.items()))
 
         print("\nÉtape 3 : Calculer a^(-m) mod n")
         a_inv_m = self.euclide_extended(a, n)  # Calculer l'inverse de a mod n
@@ -199,16 +201,32 @@ class BASIC_COMPUTE:
         print('\nÉtape 4 : Calculer les étapes "giant"')
         giant_step_value = b
         for i in range(m):
-            print(f"\t{i}: On commence avec giant_step_value = {giant_step_value}")
+            print(f"\t{i}: Giant step = {giant_step_value}")
             
             if giant_step_value in baby_steps:
-                print(f"\t   Giant step : On a trouvé {giant_step_value} à l'étape {i} !")
+                print(f"\t   On a trouvé {giant_step_value} à l'étape {i} !")
                 print(f"\n\t=> Logarithme discret : x = {i} * {m} + {baby_steps[giant_step_value]} = {i * m + baby_steps[giant_step_value]}")
                 return i * m + baby_steps[giant_step_value]
             
-            print(f"\t   Giant step: {giant_step_value} n'est pas trouvé dans les baby steps. On passe à l'étape suivante.")
+            print(f"\t   {giant_step_value} n'est pas trouvé dans les baby steps. On passe à l'étape suivante.")
+            temp = giant_step_value
             giant_step_value = (giant_step_value * a_inv_m) % n
-            print(f"\t   On calcule le nouveau giant_step_value = ({giant_step_value} * {a_inv_m}) % {n} = {giant_step_value}")
+            print(f"\t   On calcule le nouveau giant_step_value = ({temp} * {a_inv_m}) % {n} = {giant_step_value}")
 
         print("\t=> Logarithme discret non trouvé.")
         return None
+
+    def list_of_squares(self, x):
+        print(f"\nListe des carrés dans le corps F_{x}:")
+        squares = []
+
+        for i in range(x):
+            square = (i * i) % x
+            squares.append(square)
+            print(f"\t{i}^2 mod {x} = {square}")
+        
+        unique_squares = sorted(set(squares))
+        print(f"\n\t=> Carrés distincts dans F_{x} = {unique_squares}")
+        
+        return unique_squares
+    

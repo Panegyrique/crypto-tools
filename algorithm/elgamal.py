@@ -10,7 +10,6 @@ class ELGAMAL:
 
         self._compute = BASIC_COMPUTE()
         
-
     def encrypt(self, m, k):
         # c = g^k mod p et c2 = m * h^k mod p
         c1 = self._compute.modular_exponentiation(self._g, k, self._p)
@@ -20,10 +19,9 @@ class ELGAMAL:
         print(f"Chiffrement : c2 = {m} * {self._h}^{k} mod {self._p}\n\t\t= {c2}")
         return c1, c2
 
-
     def decrypt(self, c1, c2):
         if self._x is None:
-            print("\nErreur : La clé privée x n'est pas définie")
+            print("\n\t=>Erreur : La clé privée x n'est pas définie")
             return
         
         # s = c1^x mod p et m = c2 * s^(-1) mod p
@@ -34,19 +32,19 @@ class ELGAMAL:
         print(f"Déchiffrement : m = {c2} * {s_inv} mod {self._p}\n\t\t= {m}")
         return m
 
-
     def verify_private_key(self, x):
         if pow(self._g, x, self._p) == self._h:
-            print(f"{x} est la clé privée car {self._g}^{x} mod {self._p} = {self._h}")
+            print(f"\n{x} est la clé privée car {self._g}^{x} mod {self._p} = {self._h}")
             self._x = x
+            return True
         else:
-            print(f"{x} n'est pas la clé privée car {self._g}^{x} mod {self._p} ≠ {self._h}")
-
+            print(f"\n{x} n'est pas la clé privée car {self._g}^{x} mod {self._p} ≠ {self._h}")
+            return False
 
     def brute_force_private_key(self):
         for x in range(1, self._p):  # x varie de 1 à p-1
             if pow(self._g, x, self._p) == self._h:
                 self._x = x
-                print(f"Clé privée retrouvée par brute force : x = {x}")
+                print(f"\nClé privée retrouvée par brute force : x = {x}")
                 return
-        print("Aucune clé privée n'a été trouvée")
+        print("\nAucune clé privée n'a été trouvée")

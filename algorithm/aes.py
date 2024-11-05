@@ -1,7 +1,6 @@
 import ctypes
 from pathlib import Path
 
-# Constants for AES
 DATA_SIZE = 16            # Size of the data block (for AES-128)
 STATE_ROW_SIZE = 4        # Number of rows in the state matrix
 STATE_COL_SIZE = 4        # Number of columns in the state matrix
@@ -73,7 +72,6 @@ class AES:
         master_key = self._message_to_state(state)
         roundkeys = (ctypes.c_uint8 * ((ROUND_COUNT + 1) * STATE_ROW_SIZE * STATE_COL_SIZE))()  
         self.aes_lib.KeyGenDisplay(roundkeys, master_key)
-        return roundkeys
     
     def _message_to_state(self, message):
         state = (ctypes.c_uint8 * STATE_ROW_SIZE * STATE_COL_SIZE)()

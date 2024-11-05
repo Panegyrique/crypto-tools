@@ -1,9 +1,21 @@
-## Dependencies
+## Requirements
+To get started, make sure you have Python and install the required dependencies:
 ```py
 pip install sympy
 pip install pathlib
 pip install unidecode
+pip install ipykernel
 ```
+
+**WARNING**  
+The ```libaes.so``` library file located in ```algorithm/lib-c/``` may not be compatible with your computer due to architecture-specific compilation. To resolve this, you will need to get the source code of my AES implementation [**here**](https://github.com/Panegyrique/aes-c).
+
+Open a terminal and compile the .so file using:
+```bash
+gcc -shared -o libaes.so -fPIC aes.c aes_display.c
+```
+Once compiled, place the ```libaes.so``` file into ```algorithm/lib-c/```.
+
 
 ## Function
 ```py
@@ -14,7 +26,7 @@ my_aes.add_round_key(state, roundkey)
 my_aes.sub_bytes(state)
 my_aes.shift_rows(state)
 my_aes.mix_columns(state)
-r = my_aes.key_gen(master_key)
+my_aes.key_gen(master_key)
 
 # CESAR
 my_cesar = CESAR(k)
@@ -28,10 +40,14 @@ k = my_diffie_hellmann.key_exchange(a, b)
 # ECC
 my_ecc = ECC(a, b, GF)
 my_ecc.compute_points()
-my_ecc.add_two_point(P=(xp, yp), Q=(xq, yq))
-my_ecc.doubling_point(P=(xp, yp))
+(xr, yr) = my_ecc.add_two_point(P=(xp, yp), Q=(xq, yq))
+(xr, yr) = my_ecc.doubling_point(P=(xp, yp))
+(xr, yr) = my_ecc.multiply_point(k, P=(xp, yp))
 my_ecc.hasse_weil_borne()
-my_ecc.try_generator_p(P=(xp, yp))
+r = my_ecc.try_generator_p(P=(xp, yp))
+Kpu = my_ecc.compute_Kpu(Kpr)
+sigma_1, sigma_2 = my_ecc.sign(hash_m, k, Kpr)
+r = my_ecc.verif_sign(hash_m, sigma_1, sigma_2, Kpu)
 
 # ELGAMAL
 my_elgamal = ELGAMAL(p, g, h, x=None)
@@ -65,4 +81,10 @@ r = my_basic_compute.modular_square_root(a, n)
 r = my_basic_compute.is_generator(group_order, g)
 p, q = my_basic_compute.fermat_factorization(n)  
 r = my_basic_compute.discrete_logarithm(a, b, n)
+r = my_basic_compute.list_of_squares(x)
+
+# LSFR
+my_lfsr = LFSR(poly = [1, 0, 0, 1, 1], init = [1, 0, 0, 1])     # Polynôme x^4 + x + 1
+seq = my_lfsr.compute_evol()
+r = my_lfsr.max_evol()
 ```

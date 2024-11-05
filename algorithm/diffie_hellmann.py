@@ -13,21 +13,21 @@ class DIFFIE_HELLMANN:
         print(f"\tSecrets choisis a = {a}, b = {b}")
         my_basic_compute = BASIC_COMPUTE()
 
-        print("\nCalcul des valeurs publiques:", end='')
+        print("\nCalcul des valeurs publiques A = (g^a mod p) et B = (g^b mod p):", end='')
         A = my_basic_compute.modular_exponentiation(self.g, a, self.p)
-        print(f"\t=> A (g^a mod p) = {self.g}^{a} mod {self.p} = {A}")
+        print(f"\t=> A = (g^a mod p) = {A}")
         B = my_basic_compute.modular_exponentiation(self.g, b, self.p)
-        print(f"\t=> B (g^b mod p) = {self.g}^{b} mod {self.p} = {B}")
+        print(f"\t=> B = (g^b mod p) = {B}")
 
         print("\nÉchange des valeurs publiques:")
-        print(f"\tUtilisateur 1 envoie A = {A}")
-        print(f"\tUtilisateur 2 envoie B = {B}")
+        print(f"\tAlice envoie A = {A}")
+        print(f"\tBob envoie B = {B}")
 
-        print("\nCalcul de la clé secrète partagée:", end='')
+        print("\nCalcul de la clé secrète partagée K1 = (B^a mod p) et K2 = (A^b mod p):", end='')
         K1 = my_basic_compute.modular_exponentiation(B, a, self.p)
-        print(f"\t=> Utilisateur 1 calcule K1 = B^a mod p = {B}^{a} mod {self.p} = {K1}")
+        print(f"\t=> Alice calcule K1 = B^a mod p = {K1}")
         K2 = my_basic_compute.modular_exponentiation(A, b, self.p)
-        print(f"\t=> Utilisateur 2 calcule K2 = A^b mod p = {A}^{b} mod {self.p} = {K2}")
+        print(f"\t=> Bob calcule K2 = A^b mod p = {K2}")
 
         if K1 == K2:
             print("\n=> Échange de clés réussi K1 = K2. Clé secrète partagée:", K1)
