@@ -48,7 +48,7 @@ class ECC():
 
         print(f"\txr = (λ^2 - Px - Qx) mod GF")
         x_r = (self._lambda ** 2 - P[0] - Q[0]) % self._GF
-        print(f"\tyr = (λ^2 * (Px - xr) - Py) mod GF")
+        print(f"\tyr = (λ * (Px - xr) - Py) mod GF")
         y_r = (self._lambda * (P[0] - x_r) - P[1]) % self._GF
         print(f"\t=> Point résultant : ({x_r}, {y_r})\n")
 
