@@ -84,7 +84,7 @@ r = my_basic_compute.discrete_logarithm(a, b, n)
 r = my_basic_compute.list_of_squares(x)
 
 # LSFR
-my_lfsr = LFSR(poly = [1, 0, 0, 1, 1], init = [1, 0, 0, 1])     # Polynôme x^4 + x + 1
+my_lfsr = LFSR(poly=[1, 0, 0, 1, 1], init=[1, 0, 0, 1])     # Poly: x^4 + x + 1
 seq = my_lfsr.compute_evol()
 r = my_lfsr.max_evol()
 ```
