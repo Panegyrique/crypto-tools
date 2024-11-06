@@ -1,6 +1,6 @@
 import ctypes
 from algorithm import AES, CESAR, DIFFIE_HELLMANN, ECC, ELGAMAL, RSA, VIGENERE
-from compute import BASIC_COMPUTE
+from compute import BASIC_COMPUTE, LFSR
 
 
 if __name__ == "__main__":
@@ -60,7 +60,7 @@ if __name__ == "__main__":
     # my_ecc.compute_points()
     # _ = my_ecc.add_two_point(P=(0,1), Q=(1,2))
     # _ = my_ecc.doubling_point(P=(0,1))
-    # _ = my_ecc.multiply_point(k, P=(xp, yp))
+    # _ = my_ecc.multiply_point(k=3, P=(0, 1))
     # my_ecc.hasse_weil_borne()
     # _ = my_ecc.try_generator_p(P=(0,1))
     # _ = my_ecc.compute_Kpu(Kpr=2)
@@ -117,6 +117,11 @@ if __name__ == "__main__":
     """
         LFSR
     """
-    # my_lfsr = LFSR(poly = [1, 0, 0, 1, 1], init = [1, 0, 0, 1])             # Polynôme x^4 + x + 1
-    # sequence = my_lfsr.compute_evol()
-    # max_period = my_lfsr.max_evol()
+    # feedback_poly = [1, 0, 1, 0, 0]  # T^5 + T^2 + 1
+    # initial_state = [1, 1, 1, 1, 1]
+
+    # feedback_poly = [1, 1, 0, 0]  # T^4 + T^1 + 1
+    # initial_state = [1, 0, 1, 0]
+
+    # my_lfsr = LFSR(feedback_poly, initial_state)
+    # my_lfsr.detect_period()
