@@ -117,10 +117,10 @@ if __name__ == "__main__":
     """
         LFSR
     """
-    # feedback_poly = [1, 0, 1, 0, 0]  # T^5 + T^2 + 1
+    # feedback_poly = [1, 0, 1, 0, 0]  # 1 + T^2 + T^5
     # initial_state = [1, 1, 1, 1, 1]
 
-    # feedback_poly = [1, 1, 0, 0]  # T^4 + T^1 + 1
+    # feedback_poly = [1, 1, 0, 0]  # 1 + T^1 + T^4
     # initial_state = [1, 0, 1, 0]
 
     # my_lfsr = LFSR(feedback_poly, initial_state)
