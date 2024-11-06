@@ -1,6 +1,6 @@
 import ctypes
 from algorithm import AES, CESAR, DIFFIE_HELLMANN, ECC, ELGAMAL, RSA, VIGENERE
-from compute import BASIC_COMPUTE, LFSR
+from compute import BASIC_COMPUTE
 
 
 if __name__ == "__main__":

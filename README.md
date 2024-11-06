@@ -40,6 +40,7 @@ k = my_diffie_hellmann.key_exchange(a, b)
 # ECC
 my_ecc = ECC(a, b, GF)
 my_ecc.compute_points()
+points = generate_curve_points(P=(xp, yp))
 (xr, yr) = my_ecc.add_two_point(P=(xp, yp), Q=(xq, yq))
 (xr, yr) = my_ecc.doubling_point(P=(xp, yp))
 (xr, yr) = my_ecc.multiply_point(k, P=(xp, yp))
