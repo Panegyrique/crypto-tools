@@ -28,6 +28,18 @@ class ECC():
         print(f"\n\t=> Il y a {len(self._point) + 1} points sur la courbe (en comptant le point à l'infini)")
         print(f"\t=> Points trouvés : {sorted(self._point)}\n")
 
+    def generate_curve_points(self, P):
+        R = P
+        points = []
+        points.append(R)
+
+        while R != (None, None):
+            R = self.add_two_point(R, P)
+            if R != (None, None):
+                points.append(R)
+
+        return points
+
     def add_two_point(self, P, Q):
         print(f"\nAddition de deux points P({P[0]}, {P[1]}) et Q({Q[0]}, {Q[1]}):")
         if P == Q:
@@ -86,9 +98,10 @@ class ECC():
         return (x_r, y_r)
 
     def multiply_point(self, k, P):
+        print(f"\nMultiplication de P: k * P = {k} * {P}")
         R = (None, None)
         for bit in bin(k)[2:]:
-            R = self.add_two_point(R, R)
+            R = self.doubling_point(R)
             if bit == '1':
                 R = self.add_two_point(R, P)
         return R
