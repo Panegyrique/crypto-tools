@@ -47,3 +47,29 @@ class LFSR:
             print(f"t:{t}  state: {self.state}  output bit: {output_bit}")
 
         print(f"\nPeriode maximale theorique: 2^(dim_init) - 1 = 2^{len(self.initial_state)} - 1\n\t=> {2 ** (len(self.initial_state)) - 1}")
+
+    def k_period(self, k):
+        self._reset()
+        t = 0
+        seen = set()
+
+        polynomial_str = ""
+        for i, bit in enumerate(self.feedback_poly):
+            if bit == 1:
+                if polynomial_str:
+                    polynomial_str += " + "
+                if i != 0:
+                    polynomial_str += f"T^{i}"
+                else:
+                    polynomial_str += "1"
+        polynomial_str += " + T^" + str(len(self.feedback_poly))
+        print(f"Polynôme de rétroaction: {polynomial_str} (coefficients: {self.feedback_poly})")
+        print(f"État initial: {self.state}")
+        
+        for i in range(k):
+            seen.add(tuple(self.state))
+            output_bit = self._step()
+            t += 1
+            print(f"t:{t}  state: {self.state}  output bit: {output_bit}")
+
+        print(f"\nPeriode maximale theorique: 2^(dim_init) - 1 = 2^{len(self.initial_state)} - 1\n\t=> {2 ** (len(self.initial_state)) - 1}")
