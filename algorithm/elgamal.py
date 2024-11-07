@@ -20,17 +20,11 @@ class ELGAMAL:
         return c1, c2
 
     def decrypt(self, c1, c2):
-        if self._x is None:
-            print("\n\t=>Erreur : La clé privée x n'est pas définie")
-            return
-        
-        # s = c1^x mod p et m = c2 * s^(-1) mod p
         s = self._compute.modular_exponentiation(c1, self._x, self._p)
-        s_inv = self._compute.modular_exponentiation(s, -1, self._p)
-        m = (c2 * s_inv) % self._p
-        print(f"\nDéchiffrement : s = {c1}^{self._x} mod {self._p}\n\t\t= {s}")
-        print(f"Déchiffrement : m = {c2} * {s_inv} mod {self._p}\n\t\t= {m}")
-        return m
+        s_inv = self._compute.euclide_extended(s, self._p)
+        decrypted_message = (c2 * s_inv) % self._p
+        print(f"Déchiffrement de ({c1},{c2}): m = {c2} * {s_inv} mod {self._p}\n\t\t= {decrypted_message}")
+        return decrypted_message
 
     def verify_private_key(self, x):
         if pow(self._g, x, self._p) == self._h:
